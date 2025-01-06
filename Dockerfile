@@ -8,6 +8,7 @@ RUN rm requirements.txt
 
 ENV AWS_IP_RANGES_URL=https://ip-ranges.amazonaws.com/ip-ranges.json
 ENV REGION_FILTER=eu-west-
+ENV IPS_REFRESH_TIME=86400
 
 COPY ./app /app
 

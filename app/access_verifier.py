@@ -39,8 +39,7 @@ def refresh_allowed_ips():
         except Exception as e:
             app.logger.error(f"Failed to update IP ranges: {e}")
         
-        # Refresh the IP list every 24 hours (86400 seconds)
-        time.sleep(86400)
+        time.sleep(int(os.getenv("IPS_REFRESH_TIME")))
 
 # Endpoint to verify access
 @app.route("/verify", methods=["POST"])
@@ -65,9 +64,6 @@ def ip_in_range(ip, range):
         return ip_address(ip) in ip_network(range)
     except ValueError:
         return False
-
+    
 # Start a background thread to refresh allowed IPs
 threading.Thread(target=refresh_allowed_ips, daemon=True).start()
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)

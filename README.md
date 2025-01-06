@@ -8,6 +8,7 @@ This is a Flask-based access verifier application that checks whether a request 
 - Fetches AWS IP ranges for the specified region (e.g., Europe West).
 - Allows configuring AWS IP range URL and region filter via environment variables (AWS_IP_RANGES_URL and REGION_FILTER by default "https://ip-ranges.amazonaws.com/ip-ranges.json" and "eu-west-").
 - Allows log level configuration via LOG_LEVEL environment variable (INFO by default).
+- Allows to change interval of refreshing allowed IP addresses range via IPS_REFRESH_TIME variable (in seconds, 86400 seconds = 24 hours by default).
 
 ## Requirements
 

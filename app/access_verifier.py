@@ -16,11 +16,8 @@ logging.basicConfig(
 app.logger.info(f"Logging level set to {log_level}")
 
 # URL to fetch IP ranges for AWS Europe West
-# AWS_IP_RANGES_URL = os.getenv("AWS_IP_RANGES_URL")
-# REGION_FILTER = os.getenv("REGION_FILTER")
-
-AWS_IP_RANGES_URL = "https://ip-ranges.amazonaws.com/ip-ranges.json"
-REGION_FILTER = "eu-west-"
+AWS_IP_RANGES_URL = os.getenv("AWS_IP_RANGES_URL")
+REGION_FILTER = os.getenv("REGION_FILTER")
 
 # Function to refresh allowed IPs
 def refresh_allowed_ips():
@@ -42,8 +39,7 @@ def refresh_allowed_ips():
         except Exception as e:
             app.logger.error(f"Failed to update IP ranges: {e}")
         
-        # time.sleep(int(os.getenv("IPS_REFRESH_TIME")))
-        time.sleep(86400)
+        time.sleep(int(os.getenv("IPS_REFRESH_TIME")))
 
 # Endpoint to verify access
 @app.route("/verify", methods=["POST"])
